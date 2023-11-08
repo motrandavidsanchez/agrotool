@@ -49,14 +49,14 @@ docker-compose up
 
 #### Make migration:
 ```bash
-cd reciclads
+cd agrotool
 python manage.py makemigrations
 ```
 
 #### Apply migration:
 ```bash
 sudo docker-compose run --rm backend_api bash
-cd reciclads
+cd agrotool
 python manage.py migrate
 ```
 ---
