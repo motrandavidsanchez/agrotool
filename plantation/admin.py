@@ -13,3 +13,8 @@ class HectareAdmin(admin.ModelAdmin):
     inlines = [BatchInline]
 
 
+@admin.register(Batch)
+class BatchAdmin(admin.ModelAdmin):
+    list_display = ["code", "objetive", "hectare"]
+    search_fields = ["code"]
+    list_filter = ["objetive"]
