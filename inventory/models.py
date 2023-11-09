@@ -10,6 +10,7 @@ class Tool(BaseModel):
         verbose_name_plural = 'Herramientas'
 
     owner = models.ForeignKey(Staff, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Propietario')
+    state = models.BooleanField(default=True, verbose_name='Estado')
 
 
 class StaffEquipment(BaseModel):

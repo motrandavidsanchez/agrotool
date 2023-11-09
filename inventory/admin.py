@@ -5,9 +5,10 @@ from inventory.models import Tool, StaffEquipment, Supplies
 
 @admin.register(Tool)
 class ToolAdmin(admin.ModelAdmin):
-    list_display = ['name', 'codigo']
+    list_display = ['name', 'codigo', 'state']
     search_fields = ['name', 'codigo']
     autocomplete_fields = ['owner']
+    readonly_fields = ['state']
 
 
 @admin.register(StaffEquipment)
