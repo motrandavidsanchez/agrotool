@@ -15,6 +15,6 @@ class HectareAdmin(admin.ModelAdmin):
 
 @admin.register(Batch)
 class BatchAdmin(admin.ModelAdmin):
-    list_display = ["code", "objetive", "hectare"]
+    list_display = ["code", "objetive", "species", "hectare"]
     search_fields = ["code"]
     list_filter = ["objetive"]

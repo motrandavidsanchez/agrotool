@@ -22,6 +22,7 @@ class Batch(models.Model):
     code = models.CharField(max_length=150, verbose_name='Codigo')
     tree_age = models.IntegerField(verbose_name='Edad de arboles')
     species = models.CharField(max_length=150, verbose_name='Especie')
+    quantity = models.IntegerField(blank=True, null=True, verbose_name='Cantidad')
     objetive = models.CharField(max_length=5, choices=OBJECTIVE, blank=True, null=True, verbose_name='Objetivo')
     hectare = models.ForeignKey(Hectare, on_delete=models.CASCADE)
 

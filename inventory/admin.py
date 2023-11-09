@@ -5,14 +5,18 @@ from inventory.models import Tool, StaffEquipment, Supplies
 
 @admin.register(Tool)
 class ToolAdmin(admin.ModelAdmin):
-    search_fields = ['name', 'code']
+    list_display = ['name', 'codigo']
+    search_fields = ['name', 'codigo']
+    autocomplete_fields = ['owner']
 
 
 @admin.register(StaffEquipment)
 class StaffEquipmentAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'codigo']
+    search_fields = ['name', 'codigo']
 
 
 @admin.register(Supplies)
 class SuppliesAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'codigo']
+    search_fields = ['name', 'codigo']
