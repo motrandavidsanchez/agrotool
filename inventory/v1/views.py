@@ -10,7 +10,7 @@ class ToolViewSet(ListAPIView, viewsets.GenericViewSet):
     queryset = Tool.objects.all()
     serializer_class = ToolSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name', 'codigo']
+    filterset_fields = ['name', 'codigo', 'state']
 
 
 class StaffEquipmentViewSet(ListAPIView, viewsets.GenericViewSet):

@@ -10,6 +10,8 @@ class HectareSerializer(serializers.ModelSerializer):
 
 
 class BatchSerializer(serializers.ModelSerializer):
+    hectare = HectareSerializer()
+
     class Meta:
         model = Batch
         fields = '__all__'
