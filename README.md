@@ -55,8 +55,7 @@ python manage.py makemigrations
 
 #### Apply migration:
 ```bash
-sudo docker-compose run --rm backend_api bash
-cd agrotool
+sudo docker-compose exec django bash
 python manage.py migrate
 ```
 ---
@@ -79,9 +78,9 @@ pytest app/tests/test_app.py::name_test
 ```
 #### Docker all tests
 ```bash
-sudo docker-compose run backend_api pytest .
+sudo docker-compose run django pytest .
 ```
 #### Docker one test
 ```bash
-sudo docker-compose run backend_api pytest app/tests/test_app.py::name_test
+sudo docker-compose run django pytest app/tests/test_app.py::name_test
 ```
