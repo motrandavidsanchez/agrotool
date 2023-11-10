@@ -9,6 +9,7 @@ from rest_framework.response import Response
 
 from plantation.models import Hectare, Batch
 from plantation.v1.serializers import HectareSerializer, BatchSerializer
+from util.services import weather_alerts
 
 
 class HectareViewSet(ListCreateAPIView, viewsets.GenericViewSet):
@@ -56,4 +57,3 @@ class BatchViewSet(ListCreateAPIView, viewsets.GenericViewSet):
             data={"message": f"Poda del ({batch}) exitosa."},
             status=status.HTTP_200_OK
         )
-
