@@ -32,5 +32,65 @@ services:
     volumes:
       - agrotool_pg:/var/lib/postgresql/data
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: on-failure:5
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  celeryworker:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: celery_worker_agrotool
+    restart: on-failure:5
+    command: /start-celeryworker
+    environment:
+      - POSTGRES_HOST=postgresql
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - postgresql
+
+  celerybeat:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: celery_beat_agrotool
+    restart: on-failure:5
+    command: /start-celerybeat
+    environment:
+      - POSTGRES_HOST=postgresql
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - postgresql
+
+  flower:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: celery_flower_agrotool
+    restart: on-failure:5
+    command: /start-flower
+    environment:
+      - POSTGRES_HOST=postgresql
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - 5555:5555
+    depends_on:
+      - rabbitmq
+      - postgresql
+
 volumes:
   agrotool_pg:

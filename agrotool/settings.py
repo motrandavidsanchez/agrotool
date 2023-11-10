@@ -6,9 +6,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-30_m9wiz2f@etzqj^fg#8h-%!*d9_z&$=dzmaiofa9&k3e7fke'
+SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-30_m9wiz2f@etzqj^fg#8h-%!*d9_z&$=dzmaiofa9&k3e7fke')
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -26,6 +26,7 @@ PARTY_APPS = (
     'rest_framework',
     'django_filters',
     'django_extensions',
+    'django_celery_beat',
 )
 
 PROJECT_APPS = (
@@ -103,7 +104,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Config Django rest framework
+# ####################### Config Django rest framework #######################
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
@@ -120,7 +121,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
-# Config Django Jazzmin
+# ####################### Config Django Jazzmin #######################
 JAZZMIN_SETTINGS = {
     "site_title": "Admin Agrotool",
     "site_header": "Agrotool Admin",
@@ -150,3 +151,9 @@ JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
     "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
 }
+
+# ####################### Config Celery #######################
+BROKER_URL = os.environ.get("BROKER_URL", 'amqp://guest:guest@127.0.0.1//')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
